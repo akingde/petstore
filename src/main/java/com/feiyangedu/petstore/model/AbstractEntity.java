@@ -4,8 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -58,13 +56,4 @@ public class AbstractEntity {
 		this.version = version;
 	}
 
-	@PrePersist
-	public void onCreate() {
-		this.createdTime = this.updatedTime = System.currentTimeMillis();
-	}
-
-	@PreUpdate
-	public void onUpdate() {
-		this.updatedTime = System.currentTimeMillis();
-	}
 }
