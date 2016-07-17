@@ -47,8 +47,7 @@ public class BasicAuthenticatorTest {
 		String header = "Basic " + Base64Util.encodeToString(EMAIL + ":" + PASSWORD);
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/");
 		request.addHeader("Authorization", header);
-		MockHttpServletResponse response = new MockHttpServletResponse();
-		User user = authenticator.authenticate(request, response);
+		User user = authenticator.authenticate(request, new MockHttpServletResponse());
 		assertNotNull(user);
 		assertEquals(ID, user.getId());
 		assertEquals(EMAIL, user.getEmail());
@@ -59,8 +58,7 @@ public class BasicAuthenticatorTest {
 		String header = "BASIC " + Base64Util.encodeToString(EMAIL + ":" + PASSWORD);
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/");
 		request.addHeader("Authorization", header);
-		MockHttpServletResponse response = new MockHttpServletResponse();
-		User user = authenticator.authenticate(request, response);
+		User user = authenticator.authenticate(request, new MockHttpServletResponse());
 		assertNull(user);
 	}
 
@@ -69,8 +67,7 @@ public class BasicAuthenticatorTest {
 		String header = "Basic " + Base64Util.encodeToString(EMAIL + "-" + PASSWORD);
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/");
 		request.addHeader("Authorization", header);
-		MockHttpServletResponse response = new MockHttpServletResponse();
-		User user = authenticator.authenticate(request, response);
+		User user = authenticator.authenticate(request, new MockHttpServletResponse());
 		assertNull(user);
 	}
 
@@ -79,8 +76,7 @@ public class BasicAuthenticatorTest {
 		String header = "Basic " + Base64Util.encodeToString("test@example.com" + ":" + PASSWORD);
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/");
 		request.addHeader("Authorization", header);
-		MockHttpServletResponse response = new MockHttpServletResponse();
-		User user = authenticator.authenticate(request, response);
+		User user = authenticator.authenticate(request, new MockHttpServletResponse());
 		assertNull(user);
 	}
 
@@ -89,8 +85,7 @@ public class BasicAuthenticatorTest {
 		String header = "Basic " + Base64Util.encodeToString(EMAIL + ":" + HashUtil.sha1("bad-password"));
 		MockHttpServletRequest request = new MockHttpServletRequest("GET", "/");
 		request.addHeader("Authorization", header);
-		MockHttpServletResponse response = new MockHttpServletResponse();
-		User user = authenticator.authenticate(request, response);
+		User user = authenticator.authenticate(request, new MockHttpServletResponse());
 		assertNull(user);
 	}
 }

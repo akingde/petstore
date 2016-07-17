@@ -20,8 +20,8 @@ public class CookieHelper {
 
 	final Log log = LogFactory.getLog(getClass());
 
-	String sessionCookieName = "thesession";
-	int sessionCookieExpires = 24 * 3600;
+	static final String SESSION_COOKIE_NAME = "thesession";
+	static final int SESSION_COOKIE_EXPIRES = 24 * 3600;
 
 	@Autowired
 	UserService userService;
@@ -103,7 +103,7 @@ public class CookieHelper {
 
 	public void setSessionCookie(HttpServletResponse response, String sessionCookieValue) {
 		String encodedValue = Base64Util.urlEncodeToString(sessionCookieValue);
-		_setCookie(response, encodedValue, this.sessionCookieExpires);
+		_setCookie(response, encodedValue, SESSION_COOKIE_EXPIRES);
 	}
 
 	public void deleteSessionCookie(HttpServletResponse response) {
@@ -111,7 +111,7 @@ public class CookieHelper {
 	}
 
 	void _setCookie(HttpServletResponse response, String value, int expiry) {
-		Cookie cookie = new Cookie(sessionCookieName, value);
+		Cookie cookie = new Cookie(SESSION_COOKIE_NAME, value);
 		cookie.setMaxAge(expiry);
 		cookie.setPath("/");
 		cookie.setHttpOnly(true);

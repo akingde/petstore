@@ -2,8 +2,6 @@ package com.feiyangedu.petstore.web.auth;
 
 import static org.junit.Assert.*;
 
-import java.util.UUID;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +16,7 @@ public class CookieHelperTest {
 	static final String AUTH_SALT = "salt1001-b508-4fc7-b3e3-4109a56dadcd";
 	static final String AUTH_PASSWD = HashUtil.sha1("password");
 
-	static final String USER_ID = UUID.randomUUID().toString(); // 1fd6bd08-3150-4ace-b8c1-13d66bc8faa2
+	static final String USER_ID = "user1001-3150-4ace-b8c1-13d66bc8faa2";
 	static final String USER_NAME = "Mr Cookie";
 	static final String USER_EMAIL = "cookie@feiyangedu.com";
 
